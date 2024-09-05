@@ -9,6 +9,7 @@ set(TARGET_SRC
     app.cpp
 
     ${SOLUTION_DIR}/lib/hash/byte_order.c
+    ${SOLUTION_DIR}/lib/hash/city.c
     ${SOLUTION_DIR}/lib/hash/md5.c
     ${SOLUTION_DIR}/lib/hash/sha1.c
     ${SOLUTION_DIR}/lib/hash/sha512.c

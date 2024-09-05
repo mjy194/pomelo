@@ -3,6 +3,7 @@
 #include "binhex/binhex.h"
 #include "../pomelodb/database.h"
 #include "hash/murmur.h"
+#include "hash/city.h"
 #include "utils/performance.hpp"
 #include <typedef.h>
 
@@ -436,6 +437,12 @@ bool App::get_hash(pomelo::db_algo_t algo, uint8_t* data, uint32_t datasz, uint8
             hashsz = sha512_hash_size;
             break;
         }
+        case pomelo::db_algo_city32: {
+            uint32_t h = city_hash32(data, datasz);
+            hashsz = sizeof(uint32_t);
+            memcpy(hash, &h, hashsz);
+            break;
+        }
         default:
             return false;
     }
@@ -452,6 +459,7 @@ std::string App::get_algo_name(pomelo::db_algo_t algo) {
         {pomelo::db_algo_md5,      "md5"},
         {pomelo::db_algo_sha1,     "sha1"},
         {pomelo::db_algo_sha512,   "sha512"},
+        {pomelo::db_algo_city32,   "city32"},
     };
     for (int i =0; i < ARRAY_SIZE(algos); i++) {
         if (algos[i].algo == algo) {

@@ -43,6 +43,7 @@ namespace pomelo {
         db_algo_md5,
         db_algo_sha1,
         db_algo_sha512,
+        db_algo_city32,
         db_algo_maximum
     } db_algo_t;
 
@@ -61,7 +62,8 @@ namespace pomelo {
             sizeof(uint64_t),
             md5_hash_size,
             sha1_hash_size,
-            sha512_hash_size
+            sha512_hash_size,
+            sizeof(uint32_t)
     };
 
     typedef PACK(struct primary_table {
